@@ -20,11 +20,11 @@
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "daisyui-blueprint";
-  version = "1.5.2";
+  version = "1.5.3";
 
   src = fetchurl {
     url = "https://registry.npmjs.org/daisyui-blueprint/-/daisyui-blueprint-${finalAttrs.version}.tgz";
-    hash = "sha256-+5elCRTJ/oYFHmWUvFLeZIAdsbdOTza2Kc0KQu2LnTY=";
+    hash = "sha256-YJaboWX2E4gqvSnuqw1V+AyphwjlR3wF8s1I4AWEIis=";
   };
 
   dontBuild = true;
