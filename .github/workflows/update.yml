@@ -30,6 +30,17 @@ jobs:
             exit 0
           fi
           nix run nixpkgs#nix-update -- --flake --version "$latest" daisyui-blueprint
+
+          # Refresh deps/ to match the new tarball's runtime dependency set
+          # (deps/bun.lock + deps/bun.nix feed the offline bun2nix vendoring).
+          npm view "daisyui-blueprint@$latest" dependencies --json > /tmp/deps.json || echo '{}' > /tmp/deps.json
+          jq -n --arg version "$latest" --slurpfile dependencies /tmp/deps.json \
+            '{ name: "daisyui-blueprint", version: $version, type: "module", dependencies: ($dependencies[0] // {}) }' \
+            > deps/package.json
+          nix shell nixpkgs#bun -c bash -c 'cd deps && rm -f bun.lock && bun install'
+          nix run github:nix-community/bun2nix/0f2a1f0b6f42cebe3b149bf62d38754c5e0e9729 -- \
+            -l deps/bun.lock -o deps/bun.nix
+
           nix build .#daisyui-blueprint
           {
             echo "changed=true"

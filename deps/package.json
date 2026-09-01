@@ -1,0 +1,9 @@
+{
+  "name": "daisyui-blueprint",
+  "version": "1.6.1",
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.0.0",
+    "zod": "4.4.3"
+  }
+}
