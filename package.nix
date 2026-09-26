@@ -46,11 +46,11 @@ in
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "daisyui-blueprint";
-  version = "1.6.8";
+  version = "1.8.1";
 
   src = fetchurl {
     url = "https://registry.npmjs.org/daisyui-blueprint/-/daisyui-blueprint-${finalAttrs.version}.tgz";
-    hash = "sha256-+KmEiUVF2BQ9QKK9C58cVBn4IZTRHWQ8wMqiWIFM9ks=";
+    hash = "sha256-vq0phcirySD32RKfcwULEjTNV9y741q+6QHPTJGle7s=";
   };
 
   inherit bunDeps;

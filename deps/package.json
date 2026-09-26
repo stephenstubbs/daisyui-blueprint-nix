@@ -1,6 +1,6 @@
 {
   "name": "daisyui-blueprint",
-  "version": "1.6.8",
+  "version": "1.8.1",
   "type": "module",
   "dependencies": {
     "zod": "4.4.3",
