@@ -17,15 +17,14 @@
   };
 
   outputs =
-    { self, nixpkgs, bun2nix }:
+    {
+      self,
+      nixpkgs,
+      bun2nix,
+    }:
     let
       inherit (nixpkgs) lib;
-      forAllSystems = lib.genAttrs [
-        "aarch64-darwin"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "x86_64-linux"
-      ];
+      forAllSystems = lib.genAttrs (builtins.attrNames bun2nix.packages);
       # Re-bind the flake input's per-system package so call sites read
       # `bun2nix.fetchBunDeps` / `bun2nix.mkDerivation` (its functions ride on
       # the CLI package's passthru).
